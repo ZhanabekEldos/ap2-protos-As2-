@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package payment.v1;
+
+option go_package = "github.com/ZhanabekEldos/ap2-generated/payment;paymentpb";
+
+import "google/protobuf/timestamp.proto";
+
+service PaymentService {
+  rpc ProcessPayment(ProcessPaymentRequest) returns (ProcessPaymentResponse);
+}
+
+message ProcessPaymentRequest {
+  string order_id = 1;
+  int64 amount = 2;
+}
+
+message ProcessPaymentResponse {
+  string payment_id = 1;
+  string order_id = 2;
+  string transaction_id = 3;
+  int64 amount = 4;
+  string status = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
